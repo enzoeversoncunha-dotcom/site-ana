@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para o Amor da Minha Vida</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      color: #333;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Fundo animado */
+    .hearts, .particles {
+      position: fixed;
+      top:0; left:0; width:100%; height:100%;
+      pointer-events:none;
+      z-index:1;
+    }
+    .hearts span, .particles span {
+      position: absolute;
+      bottom: -50px;
+      font-size: 20px;
+      animation: rise 6s linear infinite;
+    }
+    .hearts span { color: rgba(255,0,100,0.7); }
+    .particles span { color: rgba(255,255,255,0.5); font-size: 5px; }
+    @keyframes rise {
+      0% { transform: translateY(0) scale(1); opacity:1; }
+      100% { transform: translateY(-120vh) scale(0.5); opacity:0; }
+    }
+
+    /* Conteúdo */
+    .content { position:relative; z-index:2; max-width:800px; margin:auto; padding:50px 20px; }
+
+    h1 {
+      font-family:'Great Vibes', cursive;
+      font-size:3.5em;
+      color:white;
+      text-align:center;
+      margin-bottom:30px;
+      text-shadow:2px 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .text-block {
+      background: rgba(255,255,255,0.9);
+      padding:30px;
+      border-radius:20px;
+      margin-bottom:40px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.1);
+      opacity:0;
+      transform: translateY(30px);
+      transition: all 1s ease;
+      text-align:center;
+    }
+    .text-block.visible { opacity:1; transform:translateY(0); }
+    .text-block p { font-size:1.2em; margin-bottom:20px; }
+
+    /* Carrossel de fotos */
+    .carousel {
+      display:flex;
+      overflow-x:auto;
+      scroll-behavior:smooth;
+      gap:15px;
+      padding-bottom:10px;
+    }
+    .carousel img {
+      flex:0 0 auto;
+      width:250px;
+      border-radius:15px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+    .carousel img:hover { transform: scale(1.05); }
+    .carousel::-webkit-scrollbar { display:none; }
+
+    /* Botão surpresa */
+    .surprise-btn {
+      display:inline-block;
+      margin:20px auto;
+      padding:15px 30px;
+      background:#e75480;
+      color:white;
+      border:none;
+      border-radius:30px;
+      font-size:1.2em;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
+    }
+    .surprise-btn:hover { background:#ff89ac; transform:scale(1.05); }
+
+    /* Mensagem final */
+    .final-message {
+      font-family:'Great Vibes', cursive;
+      font-size:2em;
+      color:#e75480;
+      text-align:center;
+      margin:60px 0;
+    }
+
+    footer {
+      text-align:center;
+      padding:30px;
+      font-family:'Great Vibes', cursive;
+      font-size:1.5em;
+      color:#e75480;
+    }
+
+    @media(max-width:600px){
+      h1 { font-size:2.5em; }
+      .text-block p { font-size:1em; }
+      .carousel img { width:180px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts"></div>
+  <div class="particles"></div>
+
+  <div class="content">
+    <h1>Para Você, Meu Amor 💖</h1>
+
+    <div class="text-block">
+      <p>Desde que te conheci, cada dia se tornou mais colorido e feliz.
+         Você é a razão do meu sorriso e meu maior presente.</p>
+      <div class="carousel">
+        <img src="foto1.jpg" alt="Nosso primeiro momento">
+        <img src="foto2.jpg" alt="Momentos especiais">
+        <img src="foto3.jpg" alt="Nossa viagem">
+      </div>
+    </div>
+
+    <div class="text-block">
+      <p>Lembro de cada abraço, cada risada e cada olhar. Quero continuar
+         criando momentos inesquecíveis com você.</p>
+    </div>
+
+    <div class="text-block">
+      <p>Quer abrir uma surpresa?</p>
+      <button class="surprise-btn" onclick="alert('Você é meu grande amor e minha felicidade ❤️')">Clique aqui 💌</button>
+    </div>
+
+    <div class="final-message">
+      Eu te amo ❤️ para sempre e sempre 🌹
+    </div>
+  </div>
+
+  <footer>
+    Feito com amor, só para você 💌
+  </footer>
+
+  <script>
+    // Corações e partículas flutuantes
+    const heartsContainer = document.querySelector('.hearts');
+    const particlesContainer = document.querySelector('.particles');
+
+    function createHeart() {
+      const heart = document.createElement('span');
+      heart.innerHTML='❤️';
+      heart.style.left=Math.random()*100+'vw';
+      heart.style.fontSize=Math.random()*20+15+'px';
+      heartsContainer.appendChild(heart);
+      setTimeout(()=>heart.remove(),6000);
+    }
+
+    function createParticle() {
+      const particle = document.createElement('span');
+      particle.innerHTML='•';
+      particle.style.left=Math.random()*100+'vw';
+      particle.style.fontSize=Math.random()*5+5+'px';
+      particlesContainer.appendChild(particle);
+      setTimeout(()=>particle.remove(),6000);
+    }
+
+    setInterval(createHeart,300);
+    setInterval(createParticle,150);
+
+    // Fade-in dos blocos de texto
+    const blocks = document.querySelectorAll('.text-block');
+    window.addEventListener('scroll',()=>{
+      blocks.forEach(block=>{
+        const top = block.getBoundingClientRect().top;
+        if(top < window.innerHeight - 50) block.classList.add('visible');
+      });
+    });
+  </script>
+</body>
+</html>
